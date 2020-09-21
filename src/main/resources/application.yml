@@ -1,0 +1,38 @@
+server:
+  port: 33333
+spring:
+  application:
+    name: bootAdminServer
+  profiles:
+    active:
+      - secure
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:30001}/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+#---
+#spring:
+#  profiles: insecure
+#spring:
+#  profiles: secure
+#  security:
+#    user:
+#      name: "admin"
+#      password: "pwk"
+#eureka:
+#  instance:
+#    metadata-map:
+#      user.name: "admin"
+#      user.password: "pwk"
